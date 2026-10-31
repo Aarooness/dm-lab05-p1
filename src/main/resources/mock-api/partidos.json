@@ -1,0 +1,14 @@
+[
+  {"idExterno":"ucl-2025-001","equipoLocal":"Real Madrid","equipoVisitante":"Manchester City","fecha":"2025-02-11T21:00:00","fase":"Play-offs"},
+  {"idExterno":"ucl-2025-002","equipoLocal":"Celtic","equipoVisitante":"Bayern Múnich","fecha":"2025-02-11T21:00:00","fase":"Play-offs"},
+  {"idExterno":"ucl-2025-003","equipoLocal":"Paris Saint-Germain","equipoVisitante":"Brest","fecha":"2025-02-11T21:00:00","fase":"Play-offs"},
+  {"idExterno":"ucl-2025-004","equipoLocal":"Sporting CP","equipoVisitante":"Borussia Dortmund","fecha":"2025-02-11T21:00:00","fase":"Play-offs"},
+  {"idExterno":"ucl-2025-005","equipoLocal":"Club Brugge","equipoVisitante":"Atalanta","fecha":"2025-02-12T21:00:00","fase":"Play-offs"},
+  {"idExterno":"ucl-2025-006","equipoLocal":"Monaco","equipoVisitante":"Benfica","fecha":"2025-02-12T21:00:00","fase":"Play-offs"},
+  {"idExterno":"ucl-2025-007","equipoLocal":"Feyenoord","equipoVisitante":"AC Milan","fecha":"2025-02-12T21:00:00","fase":"Play-offs"},
+  {"idExterno":"ucl-2025-008","equipoLocal":"Juventus","equipoVisitante":"PSV Eindhoven","fecha":"2025-02-11T21:00:00","fase":"Play-offs"},
+  {"idExterno":"ucl-2025-009","equipoLocal":"Club Brugge","equipoVisitante":"Aston Villa","fecha":"2025-03-04T18:45:00","fase":"Octavos de final"},
+  {"idExterno":"ucl-2025-010","equipoLocal":"Real Madrid","equipoVisitante":"Atlético de Madrid","fecha":"2025-03-04T21:00:00","fase":"Octavos de final"},
+  {"idExterno":"ucl-2025-011","equipoLocal":"Paris Saint-Germain","equipoVisitante":"Liverpool","fecha":"2025-03-05T21:00:00","fase":"Octavos de final"},
+  {"idExterno":"ucl-2025-012","equipoLocal":"Bayern Múnich","equipoVisitante":"Bayer Leverkusen","fecha":"2025-03-05T21:00:00","fase":"Octavos de final"}
+]

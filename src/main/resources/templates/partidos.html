@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Partidos | Champions</title>
+    <link rel="stylesheet" th:href="@{/styles.css}">
+</head>
+<body>
+<header class="site-header">
+    <a class="brand" th:href="@{/}">Champions <span>Partidos y predicciones</span></a>
+    <nav><a th:href="@{/}">Partidos</a><a th:href="@{/predicciones}">Predicciones</a></nav>
+</header>
+<main class="container">
+    <section class="intro">
+        <p class="eyebrow">Laboratorio 5 · Diseño de Software</p>
+        <h1>Partidos</h1>
+        <p>Calendario de ejemplo con datos simulados para fines académicos. No es el calendario oficial.</p>
+    </section>
+    <p class="empty" th:if="${#lists.isEmpty(partidos)}">No hay partidos guardados todavía.</p>
+    <section class="match-grid" th:unless="${#lists.isEmpty(partidos)}">
+        <article class="card match-card" th:each="partido : ${partidos}">
+            <div class="card-top"><span class="phase" th:text="${partido.fase}">Fase</span>
+                <time th:text="${#temporals.format(partido.fecha, 'dd/MM/yyyy HH:mm')}">Fecha</time></div>
+            <div class="teams">
+                <span th:text="${partido.equipoLocal}">Local</span>
+                <span class="versus">VS</span>
+                <span th:text="${partido.equipoVisitante}">Visitante</span>
+            </div>
+            <a class="button" th:href="@{/partidos/{id}/prediccion(id=${partido.id})}">Registrar predicción</a>
+        </article>
+    </section>
+</main>
+<footer>Datos simulados · Proyecto académico, no oficial de UEFA</footer>
+</body>
+</html>

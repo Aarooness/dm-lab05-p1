@@ -1,0 +1,59 @@
+services:
+  app:
+    image: aarooness0/champions-lab5:latest
+    build:
+      context: .
+    environment:
+      SPRING_PROFILES_ACTIVE: app
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/${POSTGRES_DB:-champions}
+      SPRING_DATASOURCE_USERNAME: ${POSTGRES_USER:-champions}
+      SPRING_DATASOURCE_PASSWORD: ${POSTGRES_PASSWORD:?Define POSTGRES_PASSWORD en .env}
+      MATCHES_API_URL: ${MATCHES_API_URL:-http://mock-api:8080/api/partidos}
+    ports:
+      - "${APP_PORT:-8000}:8080"
+    depends_on:
+      db:
+        condition: service_healthy
+      mock-api:
+        condition: service_healthy
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-fsS", "http://localhost:8080/health"]
+      interval: 15s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+
+  db:
+    image: postgres:16
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-champions}
+      POSTGRES_USER: ${POSTGRES_USER:-champions}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Define POSTGRES_PASSWORD en .env}
+    volumes:
+      - champions-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U \"$${POSTGRES_USER}\" -d \"$${POSTGRES_DB}\""]
+      interval: 5s
+      timeout: 5s
+      retries: 12
+      start_period: 10s
+    restart: unless-stopped
+
+  mock-api:
+    image: aarooness0/champions-lab5:latest
+    build:
+      context: .
+    command: ["--spring.profiles.active=mock"]
+    expose:
+      - "8080"
+    healthcheck:
+      test: ["CMD", "curl", "-fsS", "http://localhost:8080/api/partidos"]
+      interval: 5s
+      timeout: 5s
+      retries: 12
+      start_period: 10s
+    restart: unless-stopped
+
+volumes:
+  champions-data:

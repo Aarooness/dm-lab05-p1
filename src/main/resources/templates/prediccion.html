@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Registrar predicción | Champions</title>
+    <link rel="stylesheet" th:href="@{/styles.css}">
+</head>
+<body>
+<header class="site-header">
+    <a class="brand" th:href="@{/}">Champions <span>Partidos y predicciones</span></a>
+    <nav><a th:href="@{/}">Partidos</a><a th:href="@{/predicciones}">Predicciones</a></nav>
+</header>
+<main class="container narrow">
+    <a class="back-link" th:href="@{/}">← Volver a partidos</a>
+    <section class="card form-card">
+        <p class="eyebrow" th:text="${partido.fase}">Fase</p>
+        <h1>Tu predicción</h1>
+        <p class="fixture"><span th:text="${partido.equipoLocal}">Local</span> <b>vs</b>
+            <span th:text="${partido.equipoVisitante}">Visitante</span></p>
+        <p class="error" role="alert" th:if="${error}" th:text="${error}"></p>
+        <form method="post" th:action="@{/partidos/{id}/prediccion(id=${partido.id})}" th:object="${form}">
+            <label for="resultado">¿Quién gana?</label>
+            <select id="resultado" th:field="*{resultado}" required>
+                <option value="">Selecciona el resultado</option>
+                <option value="LOCAL" th:text="${partido.equipoLocal}">Equipo local</option>
+                <option value="VISITANTE" th:text="${partido.equipoVisitante}">Equipo visitante</option>
+                <option value="EMPATE">Empate</option>
+            </select>
+            <fieldset>
+                <legend>Marcador estimado</legend>
+                <label for="golesLocal" th:text="${partido.equipoLocal}">Local</label>
+                <input id="golesLocal" type="number" min="0" step="1" inputmode="numeric"
+                       th:field="*{golesLocal}" required>
+                <label for="golesVisitante" th:text="${partido.equipoVisitante}">Visitante</label>
+                <input id="golesVisitante" type="number" min="0" step="1" inputmode="numeric"
+                       th:field="*{golesVisitante}" required>
+            </fieldset>
+            <button class="button" type="submit">Guardar predicción</button>
+        </form>
+    </section>
+</main>
+<footer>Tu predicción se conservará en la base de datos.</footer>
+</body>
+</html>

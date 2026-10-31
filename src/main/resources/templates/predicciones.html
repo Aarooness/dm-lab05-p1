@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Predicciones | Champions</title>
+    <link rel="stylesheet" th:href="@{/styles.css}">
+</head>
+<body>
+<header class="site-header">
+    <a class="brand" th:href="@{/}">Champions <span>Partidos y predicciones</span></a>
+    <nav><a th:href="@{/}">Partidos</a><a th:href="@{/predicciones}">Predicciones</a></nav>
+</header>
+<main class="container">
+    <section class="intro">
+        <p class="eyebrow">Historial</p>
+        <h1>Todas las predicciones</h1>
+        <p>Marcadores registrados y el partido al que pertenece cada predicción.</p>
+    </section>
+    <p class="empty" th:if="${#lists.isEmpty(predicciones)}">Aún no hay predicciones. <a th:href="@{/}">Elige un partido.</a></p>
+    <div class="table-wrap" th:unless="${#lists.isEmpty(predicciones)}">
+        <table>
+            <thead><tr><th>Partido</th><th>Marcador</th><th>Resultado</th><th>Registrada</th></tr></thead>
+            <tbody>
+            <tr th:each="prediccion : ${predicciones}">
+                <td><span th:text="${prediccion.partido.equipoLocal}">Local</span> –
+                    <span th:text="${prediccion.partido.equipoVisitante}">Visitante</span></td>
+                <td th:text="|${prediccion.golesLocal} - ${prediccion.golesVisitante}|">0 - 0</td>
+                <td th:text="${prediccion.resultado == 'LOCAL' ? prediccion.partido.equipoLocal :
+                    (prediccion.resultado == 'VISITANTE' ? prediccion.partido.equipoVisitante : 'Empate')}">Ganador</td>
+                <td th:text="${#temporals.format(prediccion.fechaRegistro, 'dd/MM/yyyy HH:mm')}">Fecha</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</main>
+<footer>Datos simulados · Proyecto académico, no oficial de UEFA</footer>
+</body>
+</html>

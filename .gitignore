@@ -1,0 +1,10 @@
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+target/
+.idea/
+.vscode/
+*.iml
+*.log

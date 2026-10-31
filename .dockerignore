@@ -1,0 +1,17 @@
+.git
+.env
+.env.*
+*.pem
+*.key
+target
+.idea
+.vscode
+.mvn
+mvnw
+mvnw.cmd
+**/.classpath
+**/.project
+**/.settings
+**/node_modules
+**/.venv
+**/venv
